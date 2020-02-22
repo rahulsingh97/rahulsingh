@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="images/favicom.png">
+  <script src= 
+"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> 
+    </script> 
+  <script> 
+     $.getJSON("http://api.myspeed.today/geo.json?ip=", 
+                                      function(data) { 
+       // Setting text of element P with id 
+        $("#rpip").html(data.ip); //ip
+        $("#rpcountry_code").html(data.country_code); //country_code
+        $("#rpcountry").html(data.country); //country
+        $("#rpregion").html(data.region); //region
+        $("#rpcity").html(data.city); //city
+        $("#rplatitude").html(data.latitude); //latitude
+        $("#rplongitude").html(data.longitude); //longitude
+        $("#rpzip_code").html(data.zip_code); //zip_code
+        $("#rptime_zone").html(data.time_zone); //time_zone 
+    }) 
+</script> 
+<script> 
+  $.getJSON("http://api.myspeed.today/provider.json?ip=", 
+                                   function(data) { 
+    // Setting text of element P with id 
+    // $("#rpip").html(data.ip); //ip
+     $("#rpname_ripe").html(data.name_ripe); //name_ripe
+     $("#rpip_range_start").html(data.ip_range_start); //ip_range_start
+     $("#rpip_range_end").html(data.ip_range_end); //ip_range_end
+     $("#rproute").html(data.route); //route
+     $("#rpmask").html(data.mask); //mask
+ }) 
+</script> 
+   <!-- <script> 
+  
+        $.getJSON("https://api.ipify.org?format=json", 
+                                          function(data) { 
+  
+            // Setting text of element P with id gfg 
+            $("#rpip").html(data.ip); 
+        }) 
+    </script> -->
+<style>
+
+@import 'https://fonts.googleapis.com/css?family=Inconsolata';
+
+html {
+  min-height: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  height: 100%;
+  background-color: #000000;
+  background-image: radial-gradient(#11581E, #041607), url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Inconsolata', Helvetica, sans-serif;
+  font-size: 1.5rem;
+  color: rgba(128, 255, 128, 0.8);
+  text-shadow:
+      0 0 1ex rgba(51, 255, 51, 1),
+      0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.noise {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  opacity: .02;
+}
+
+.overlay {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:
+      repeating-linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0) 100%);
+  background-size: auto 4px;
+  z-index: 1;
+}
+
+.overlay::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      0deg,
+      transparent 0%,
+      rgba(32, 128, 32, 0.2) 2%,
+      rgba(32, 128, 32, 0.8) 3%,
+      rgba(32, 128, 32, 0.2) 3%,
+      transparent 100%);
+  background-repeat: no-repeat;
+  animation: scan 7.5s linear 0s infinite;
+}
+
+@keyframes scan {
+  0%        { background-position: 0 -100vh; }
+  35%, 100% { background-position: 0 100vh; }
+}
+
+.terminal {
+  box-sizing: inherit;
+  position: absolute;
+  height: 100%;
+  width: 1000px;
+  max-width: 100%;
+  padding: 4rem;
+  text-transform: uppercase;
+}
+
+.output {
+  color: rgba(128, 255, 128, 0.8);
+  text-shadow:
+      0 0 1px rgba(51, 255, 51, 0.4),
+      0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.output::before {
+  content: "> ";
+}
+
+/*
+.input {
+  color: rgba(192, 255, 192, 0.8);
+  text-shadow:
+      0 0 1px rgba(51, 255, 51, 0.4),
+      0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.input::before {
+  content: "$ ";
+}
+*/
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a::before {
+  content: "[";
+}
+
+a::after {
+  content: "]";
+}
+
+.errorcode {
+  color: white;
+}
+</style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="overlay"></div>
+  <div class="terminal">
+    <h1>Error <span class="errorcode">404</span></h1>
+    <p class="output">The page you are looking for might have been removed or is temporarily unavailable.</p>
+    <p class="output">Please try to <a href="index.html">go back</a> or <a href="index.html">return to the homepage</a> Good luck.</p>
+    
+    <p class="output">Your IP found at <span class="errorcode" id="rpip"></span> </p>
+    <p class="output"></span> country <span class="errorcode" id="rpcountry"></span> country_code <span class="errorcode" id="rpcountry_code"></p>
+    
+    <p class="output">region <span class="errorcode" id="rpregion"></span> city <span class="errorcode" id="rpcity"></span> zip_code <span class="errorcode" id="rpzip_code"></span></p>
+    <p class="output">latitude & longitude <span class="errorcode" id="rplatitude"></span>,<span class="errorcode" id="rplongitude"></span> </p>
+    <p class="output">recepient name <span class="errorcode" id="rpname_ripe"></span> </p>
+    <p class="output">IP range start and end  <span class="errorcode" id="rpip_range_start"></span>,<span class="errorcode" id="rpip_range_end"></span> </p>
+    <p class="output">route <span class="errorcode" id="rproute"></span> mask <span class="errorcode" id="rpmask"></span> </p>
+    <a href="index.html">click to HACK</a>
+
+  </div>
+<div>
+</div> 
+</body>
+</html>
